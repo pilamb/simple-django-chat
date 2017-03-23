@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if user %}
+    <h2>Detail of user: {{usuario.nick}}</h2><hr>
+    Opened chats:
+    {% if sender%}
+      <ul>
+      {% for sents in sender %}
+        <li> {{sents}} </li>
+      {% endfor %}
+      </ul>
+      
+    {% else %}
+      <b>There are no started chats.</b>
+    {% endif %}
+    Don't be shy, you haven't talked to:
+      <ul>
+        {% for unsent in unchated %}
+          <li>
+           Open a new chat with <a href="{% url 'nuevo_mensaje' usuario.id %}"> {{unsent}}</a> 
+          </li>
+        {% endfor %}
+      </ul>
+  {% else %}     
+  	<p>User not available.</p> 
+  {% endif %}
+{% endblock content %}

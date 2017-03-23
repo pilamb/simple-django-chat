@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+<h2>New message from: {{sender}}</h2><hr>
+<form action="{% url 'nuevo_mensaje' sender.pk %}" method="post" class="bootstrap_form">
+    {% csrf_token %}
+    
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-success">
+            {% bootstrap_icon "star" %} SEND
+        </button>
+    {% endbuttons %}
+
+</form>
+
+
+{% endblock content %}

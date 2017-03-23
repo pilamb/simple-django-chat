@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+<h2>Chats between {{sender}} and {{receiver}}</h2><hr>
+    <ul>
+    {% for chat in chats %}
+       <li><b>{{chat}}</b> Time: {{chat.date_sent}}</li>
+    {% endfor %}
+    </ul>
+    <form action="{% url 'chat' sender.pk receiver.pk %}" method="post" class="bootstrap_form">
+    {% csrf_token %}
+    
+    <div class="form-group">
+      <label for="pwd">Text:</label>
+      <input type="text" class="form-control" name="text_box">
+     <button type="submit" class="btn btn-success">
+            {% bootstrap_icon "star" %} SEND
+        </button>
+    </div>
+    </form>
+{% endblock content %}
